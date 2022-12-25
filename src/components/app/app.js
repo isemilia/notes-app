@@ -2,17 +2,48 @@ import styled from 'styled-components';
 import { Component, Fragment } from 'react';
 
 import PrimaryHeader from '../primary-header/primary-header';
+import NoteItem from '../note-item/note-item';
 
 import './app.scss';
+
+const NotesWrap = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-content: center;
+  gap: 24px;
+  margin-top: 60px;
+`;
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      data: [
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''}
+      ]
+    }
   }
   render() {
+    const elements = this.state.data.map(item => {
+      const {title, text} = item;
+      return (
+        <NoteItem 
+          title={title} 
+          text={text}
+          date={new Date()} />
+      )
+    })
     return (
       <Fragment>
         <PrimaryHeader />
+        <main>
+          <NotesWrap className='container'>
+            {elements}
+          </NotesWrap>
+        </main>
       </Fragment>
     );
   }

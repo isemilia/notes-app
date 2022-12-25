@@ -32,6 +32,9 @@ code {
 .container {
   max-width: 89.4rem;
   margin: 0 auto;
+  @media (max-width: 900px) {
+    padding: 0 15px;
+  }
 }
 
 .d-flex {
