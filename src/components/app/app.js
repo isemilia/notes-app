@@ -1,6 +1,9 @@
-import './app.scss';
 import styled from 'styled-components';
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
+
+import PrimaryHeader from '../primary-header/primary-header';
+
+import './app.scss';
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +11,9 @@ class App extends Component {
   }
   render() {
     return (
-      <h1>Initial commit</h1>
+      <Fragment>
+        <PrimaryHeader />
+      </Fragment>
     );
   }
 }

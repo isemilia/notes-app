@@ -1,0 +1,16 @@
+.btn {
+    display: block;
+    appearance: none;
+    padding: 10px 24px;
+    background: var(--clr-accent-100);
+    border: 0;
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 100%;
+    text-align: center;
+    color: var(--clr-neutral-100);
+    &--small {
+      padding: 6px 18px;
+    }
+  }
