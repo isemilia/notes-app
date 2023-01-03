@@ -3,8 +3,12 @@ import { Component, Fragment } from 'react';
 
 import PrimaryHeader from '../primary-header/primary-header';
 import NoteItem from '../note-item/note-item';
-
+import PrimaryFooter from '../primary-footer/primary-footer';
 import './app.scss';
+
+function generateID() {
+  return Math.random().toString(16).slice(2);
+}
 
 const NotesWrap = styled.div`
   display: grid;
@@ -12,6 +16,11 @@ const NotesWrap = styled.div`
   place-content: center;
   gap: 24px;
   margin-top: 60px;
+`;
+
+const AppWrap = styled.div`
+  height: 100vh;
+  position: relative;
 `;
 
 class App extends Component {
@@ -33,18 +42,20 @@ class App extends Component {
         <NoteItem 
           title={title} 
           text={text}
-          date={new Date()} />
+          date={new Date()}
+          key={generateID()} />
       )
     })
     return (
-      <Fragment>
+      <AppWrap>
         <PrimaryHeader />
         <main>
           <NotesWrap className='container'>
             {elements}
           </NotesWrap>
         </main>
-      </Fragment>
+        <PrimaryFooter/>
+      </AppWrap>
     );
   }
 }
