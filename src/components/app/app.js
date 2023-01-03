@@ -4,6 +4,8 @@ import { Component, Fragment } from 'react';
 import PrimaryHeader from '../primary-header/primary-header';
 import NoteItem from '../note-item/note-item';
 import PrimaryFooter from '../primary-footer/primary-footer';
+import Popup from '../popup/popup';
+
 import './app.scss';
 
 function generateID() {
@@ -54,6 +56,7 @@ class App extends Component {
             {elements}
           </NotesWrap>
         </main>
+        <Popup></Popup>
         <PrimaryFooter/>
       </AppWrap>
     );
