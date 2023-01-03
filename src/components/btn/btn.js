@@ -8,6 +8,10 @@ class Btn extends Component {
     constructor(props) {
         super(props);
     }
+    onTogglePopup = (e) => {
+        e.preventDefault();
+        this.props.onTogglePopup();
+    }
     render() {
         const {isLarge, label} = this.props;
         let classes = ['btn'];
@@ -15,7 +19,7 @@ class Btn extends Component {
             classes.push('btn--small')
         }
         return (
-            <button className={classes.join(' ')}> <span>{label}</span> </button>
+            <button className={classes.join(' ')} onClick={this.onTogglePopup}> <span>{label}</span> </button>
         );
     }
 }

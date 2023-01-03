@@ -40,9 +40,15 @@ class Popup extends Component {
     constructor(props) {
         super(props);
     }
+    onTogglePopup = (e) => {
+        e.preventDefault();
+        if (e.target.classList.contains('popup-root')) {
+            this.props.onTogglePopup();
+        }
+    }
     render() {
         return (
-            <PopupRoot>
+            <PopupRoot className="popup-root" onClick={this.onTogglePopup}>
                 <Card>
                     <CardTitle>Add a new note</CardTitle>
                     <AddForm />

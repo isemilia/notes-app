@@ -25,12 +25,15 @@ class PrimaryHeader extends Component {
     constructor(props) {
         super(props);
     }
+    onTogglePopup = (e) => {
+        this.props.onTogglePopup();
+    }
     render() {
         return (
             <Header>
                 <div className="container d-flex jc-space-between ai-center">
                     <PageTitle>Notes</PageTitle>
-                    <Btn isLarge={true} label="Create note"/>
+                    <Btn isLarge={true} label="Create note" onTogglePopup={this.onTogglePopup} />
                 </div>
             </Header>
         );

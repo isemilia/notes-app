@@ -34,8 +34,14 @@ class App extends Component {
         {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
         {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
         {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''}
-      ]
+      ],
+      popupIsClosed: true,
     }
+  }
+  onTogglePopup = () => {
+    this.setState(() => ({
+      popupIsClosed: !this.state.popupIsClosed,
+    }));
   }
   render() {
     const elements = this.state.data.map(item => {
@@ -50,13 +56,13 @@ class App extends Component {
     })
     return (
       <AppWrap>
-        <PrimaryHeader />
+        <PrimaryHeader onTogglePopup={this.onTogglePopup} />
         <main>
           <NotesWrap className='container'>
             {elements}
           </NotesWrap>
         </main>
-        <Popup></Popup>
+        {this.state.popupIsClosed ? '' : <Popup onTogglePopup={this.onTogglePopup}/>}
         <PrimaryFooter/>
       </AppWrap>
     );
