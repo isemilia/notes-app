@@ -75,16 +75,33 @@ class AddForm extends Component {
                 ...this.state.data,
                 [e.target.name]: e.target.value
             }
-        })
+        });
     }
     onCreateNote = (e, form) => {
-        this.props.onCreateNote(e, form);
+        e.preventDefault();
+
+        const {data} = this.state;
+
+        if (Object.values(data).every(item => item.toString().trim() != '')) {
+            this.props.onCreateNote(form);
+            // console.log(data);
+            this.setState(() => ({
+                data: {
+                    title: '',
+                    text: '',
+                    date: new Date(),
+                    id: generateID()
+                }
+            }));
+        } else {
+            console.log('no data');
+        }
     }
     render() {
         return (
             <Form onSubmit={(e) => {this.onCreateNote(e, this)}}>
-                <Input onChange={this.onValueChange} type="text" name="title" placeholder="Note title" />
-                <Textarea onChange={this.onValueChange} name="text" as={'textarea'} placeholder="Note content" />
+                <Input onChange={this.onValueChange} value={this.state.data.title} type="text" name="title" placeholder="Note title" />
+                <Textarea onChange={this.onValueChange} value={this.state.data.text} name="text" as={'textarea'} placeholder="Note content" />
                 <FormBtnGroup>
                     <Cancel id="cancel">Cancel</Cancel>
                     <Submit type="submit" id="submit" onClick={(e) => { e.stopPropagation(); }}>Create</Submit>

@@ -43,21 +43,13 @@ class App extends Component {
       popupIsClosed: !this.state.popupIsClosed,
     }));
   }
-  onCreateNote = (e, form) => { 
-    e.preventDefault();
+  onCreateNote = (form) => { 
     const {data} = form.state;
     
-    if (Object.values(data).every(item => item.toString().trim() != '')) {
-      const newData = [...this.state.data, data];
-      // console.log(newData);
-      this.setState(() => ({
-        data: [...newData]
-      }));
-    }
-
-  }
-  updateNoteCount = () => {
-
+    const newData = [...this.state.data, data];
+    this.setState(() => ({
+      data: [...newData]
+    }));
   }
   render() {
     const {data} = this.state;
