@@ -55,6 +55,15 @@ class App extends Component {
       data: [...newData]
     }));
   }
+  onDelete = (id) => {
+    console.log(id, 'deleted');
+    this.setState(({data}) => {
+      const newData = data.filter(item => item.id != id);
+      return {
+        data: newData
+      }
+    });
+  }
   render() {
     const {data} = this.state;
     const elements = data.map(item => {
@@ -64,7 +73,8 @@ class App extends Component {
           title={title} 
           text={text}
           date={date}
-          key={id} />
+          key={id}
+          onDelete={() => {this.onDelete(id)}} />
       );
     });
     const noteCount = data.length;

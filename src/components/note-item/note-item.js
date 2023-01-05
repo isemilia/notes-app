@@ -45,6 +45,9 @@ const Delete = styled.button`
     border: 0;
     padding: 0;
     background-color: transparent;
+    svg {
+        pointer-events: none;
+    }
 `;
 
 const deleteIcon = (
@@ -63,7 +66,7 @@ class NoteItem extends Component {
         return n < 10 ? '0' + n : n;
     }
     render() {
-        const {title, text, date} = this.props;
+        const {title, text, date, onDelete} = this.props;
 
         const noteDate = {
             hour: date.getHours(),
@@ -84,7 +87,7 @@ class NoteItem extends Component {
                         <span className="time" style={{marginRight: '10px'}}>{this.prependZero(noteDate.hour)}:{this.prependZero(noteDate.minutes)}</span>
                         <span className="day">{noteDate.month} {noteDate.day}, {noteDate.year}</span>
                     </Date>
-                    <Delete>
+                    <Delete onClick={onDelete}>
                         {deleteIcon}
                     </Delete>
                 </Footer>
