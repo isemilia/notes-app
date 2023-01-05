@@ -35,7 +35,7 @@ class App extends Component {
         {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date('Sep 23 2023 19:10:29 GMT+0600 (East Kazakhstan Time)'), id: 3},
         {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date(), id: 4}
       ],
-      popupIsClosed: true,
+      popupIsClosed: true
     }
   }
   onTogglePopup = () => {
@@ -56,8 +56,12 @@ class App extends Component {
     }
 
   }
+  updateNoteCount = () => {
+
+  }
   render() {
-    const elements = this.state.data.map(item => {
+    const {data} = this.state;
+    const elements = data.map(item => {
       const {title, text, date, id} = item;
       return (
         <NoteItem 
@@ -67,16 +71,19 @@ class App extends Component {
           key={id} />
       );
     });
+    const noteCount = data.length;
     return (
       <AppWrap>
-        <PrimaryHeader onTogglePopup={this.onTogglePopup} />
+        <PrimaryHeader 
+          onTogglePopup={this.onTogglePopup} />
         <main>
           <NotesWrap className='container'>
             {elements}
           </NotesWrap>
         </main>
         {this.state.popupIsClosed ? '' : <Popup onTogglePopup={this.onTogglePopup} onCreateNote={this.onCreateNote} />}
-        <PrimaryFooter/>
+        <PrimaryFooter 
+          noteCount={noteCount} />
       </AppWrap>
     );
   }

@@ -67,7 +67,7 @@ class PrimaryFooter extends Component {
                     <LeftSide>
                         <NoteCount>
                             <img src={NoteIcon} alt="note" />
-                            <span>5</span>
+                            <span>{this.props.noteCount}</span>
                         </NoteCount>
                         <FooterText>Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.</FooterText>
                     </LeftSide>
