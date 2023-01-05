@@ -51,7 +51,9 @@ class Popup extends Component {
             <PopupRoot className="popup-root" onClick={this.onTogglePopup}>
                 <Card>
                     <CardTitle>Add a new note</CardTitle>
-                    <AddForm onCreateNote={this.props.onCreateNote} />
+                    <AddForm
+                        onTogglePopup={this.props.onTogglePopup}
+                        onCreateNote={this.props.onCreateNote} />
                 </Card>
             </PopupRoot>
         );

@@ -15,14 +15,18 @@ function generateID() {
 const NotesWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
   place-content: center;
   gap: 24px;
-  margin-top: 60px;
+  margin-top: 30px;
+  max-height: 80vw;
+  overflow: auto;
+  padding: 30px;
+  max-width: 95.3rem;
 `;
 
 const AppWrap = styled.div`
-  height: 100vh;
-  position: relative;
+  min-height: 100vh;
 `;
 
 class App extends Component {

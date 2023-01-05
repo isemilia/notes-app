@@ -77,6 +77,20 @@ class AddForm extends Component {
             }
         });
     }
+    resetForm = () => {
+        this.setState(() => ({
+            data: {
+                title: '',
+                text: '',
+                date: new Date(),
+                id: generateID()
+            }
+        }));
+    }
+    onTogglePopup = () => {
+        this.props.onTogglePopup();
+        this.resetForm();
+    }
     onCreateNote = (e, form) => {
         e.preventDefault();
 
@@ -85,14 +99,8 @@ class AddForm extends Component {
         if (Object.values(data).every(item => item.toString().trim() != '')) {
             this.props.onCreateNote(form);
             // console.log(data);
-            this.setState(() => ({
-                data: {
-                    title: '',
-                    text: '',
-                    date: new Date(),
-                    id: generateID()
-                }
-            }));
+            // this.resetForm();
+            this.onTogglePopup();
         } else {
             console.log('no data');
         }
@@ -103,7 +111,7 @@ class AddForm extends Component {
                 <Input onChange={this.onValueChange} value={this.state.data.title} type="text" name="title" placeholder="Note title" />
                 <Textarea onChange={this.onValueChange} value={this.state.data.text} name="text" as={'textarea'} placeholder="Note content" />
                 <FormBtnGroup>
-                    <Cancel id="cancel">Cancel</Cancel>
+                    <Cancel id="cancel" onClick={this.onTogglePopup}>Cancel</Cancel>
                     <Submit type="submit" id="submit" onClick={(e) => { e.stopPropagation(); }}>Create</Submit>
                 </FormBtnGroup>
             </Form>
