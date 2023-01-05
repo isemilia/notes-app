@@ -61,13 +61,14 @@ class PrimaryFooter extends Component {
         super(props);
     }
     render() {
+        const {noteCount} = this.props;
         return (
             <Footer>
                 <div className="container d-flex jc-space-between ai-center">
                     <LeftSide>
                         <NoteCount>
                             <img src={NoteIcon} alt="note" />
-                            <span>{this.props.noteCount}</span>
+                            <span>{noteCount}</span>
                         </NoteCount>
                         <FooterText>Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.</FooterText>
                     </LeftSide>
