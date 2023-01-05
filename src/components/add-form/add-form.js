@@ -2,6 +2,8 @@ import React from "react";
 import { Component } from "react";
 import styled from "styled-components";
 
+import { generateID } from "../app/app";
+
 const Input = styled.input`
     appearance: none;
     border: 0;
@@ -45,6 +47,7 @@ const Submit = styled(Btn)`
 
 const Cancel = styled(Btn)`
     color: var(--clr-accent-100);
+    text-decoration: none;
 `;
 
 const FormBtnGroup = styled.div`
@@ -57,15 +60,34 @@ const FormBtnGroup = styled.div`
 class AddForm extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            data: {
+                title: '',
+                text: '',
+                date: new Date(),
+                id: generateID()
+            }
+        }
+    }
+    onValueChange = (e) => {
+        this.setState({
+            data: {
+                ...this.state.data,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    onCreateNote = (e, form) => {
+        this.props.onCreateNote(e, form);
     }
     render() {
         return (
-            <Form>
-                <Input placeholder="Note title" />
-                <Textarea as={'textarea'} placeholder="Note content" />
+            <Form onSubmit={(e) => {this.onCreateNote(e, this)}}>
+                <Input onChange={this.onValueChange} type="text" name="title" placeholder="Note title" />
+                <Textarea onChange={this.onValueChange} name="text" as={'textarea'} placeholder="Note content" />
                 <FormBtnGroup>
-                    <Cancel>Cancel</Cancel>
-                    <Submit>Create</Submit>
+                    <Cancel id="cancel">Cancel</Cancel>
+                    <Submit type="submit" id="submit" onClick={(e) => { e.stopPropagation(); }}>Create</Submit>
                 </FormBtnGroup>
             </Form>
         );

@@ -30,10 +30,10 @@ class App extends Component {
     super(props);
     this.state = {
       data: [
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''},
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: ''}
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date('Jan 02 2023 15:13:29 GMT+0600 (East Kazakhstan Time)'), id: 1},
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date('Apr 15 2023 10:53:29 GMT+0600 (East Kazakhstan Time)'), id: 2},
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date('Sep 23 2023 19:10:29 GMT+0600 (East Kazakhstan Time)'), id: 3},
+        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date(), id: 4}
       ],
       popupIsClosed: true,
     }
@@ -43,17 +43,30 @@ class App extends Component {
       popupIsClosed: !this.state.popupIsClosed,
     }));
   }
+  onCreateNote = (e, form) => { 
+    e.preventDefault();
+    const {data} = form.state;
+    
+    if (Object.values(data).every(item => item.toString().trim() != '')) {
+      const newData = [...this.state.data, data];
+      // console.log(newData);
+      this.setState(() => ({
+        data: [...newData]
+      }));
+    }
+
+  }
   render() {
     const elements = this.state.data.map(item => {
-      const {title, text} = item;
+      const {title, text, date, id} = item;
       return (
         <NoteItem 
           title={title} 
           text={text}
-          date={new Date()}
-          key={generateID()} />
-      )
-    })
+          date={date}
+          key={id} />
+      );
+    });
     return (
       <AppWrap>
         <PrimaryHeader onTogglePopup={this.onTogglePopup} />
@@ -62,7 +75,7 @@ class App extends Component {
             {elements}
           </NotesWrap>
         </main>
-        {this.state.popupIsClosed ? '' : <Popup onTogglePopup={this.onTogglePopup}/>}
+        {this.state.popupIsClosed ? '' : <Popup onTogglePopup={this.onTogglePopup} onCreateNote={this.onCreateNote} />}
         <PrimaryFooter/>
       </AppWrap>
     );
@@ -70,6 +83,7 @@ class App extends Component {
 }
 
 export default App;
+export {generateID};
 
 
 // const Wrapper = styled.div`

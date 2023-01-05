@@ -22,6 +22,8 @@ const Text = styled.div`
     line-height: 1.2em;
     color: var(--clr-primary-200);
     margin-top: 10px;
+    min-height: 100px;
+    max-height: 102px;
 `;
 
 const Footer = styled.div`

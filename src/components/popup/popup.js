@@ -22,7 +22,7 @@ const Card = styled.div`
     border-radius: 15px;
     padding: 20px 24px;
     width: 330px;
-    max-width: 330px;
+    max-width: 100vw;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -51,7 +51,7 @@ class Popup extends Component {
             <PopupRoot className="popup-root" onClick={this.onTogglePopup}>
                 <Card>
                     <CardTitle>Add a new note</CardTitle>
-                    <AddForm />
+                    <AddForm onCreateNote={this.props.onCreateNote} />
                 </Card>
             </PopupRoot>
         );
