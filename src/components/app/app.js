@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { Component, Fragment } from 'react';
 
@@ -56,13 +57,27 @@ class App extends Component {
     }));
   }
   onDelete = (id) => {
-    console.log(id, 'deleted');
+    // console.log(id, 'deleted');
     this.setState(({data}) => {
       const newData = data.filter(item => item.id != id);
       return {
         data: newData
       }
     });
+  }
+  onContentChange = (id, target) => {
+    console.log(id, target.getAttribute('data-name'), 'changed');
+    
+    const attr = target.getAttribute('data-name');
+    const newData = this.state.data.map(item => {
+      if (item.id === id) {
+        return {...item, [attr]: target.textContent}
+      }
+      return item;
+    });
+    this.setState(() => ({
+      data: newData
+    }));
   }
   render() {
     const {data} = this.state;
@@ -74,7 +89,8 @@ class App extends Component {
           text={text}
           date={date}
           key={id}
-          onDelete={() => {this.onDelete(id)}} />
+          onDelete={() => {this.onDelete(id)}}
+          onContentChange={(e) => {this.onContentChange(id, e.target)}} />
       );
     });
     const noteCount = data.length;

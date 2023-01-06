@@ -65,6 +65,9 @@ class NoteItem extends Component {
     prependZero(n) {
         return n < 10 ? '0' + n : n;
     }
+    onChange = (e) => {
+        this.props.onContentChange(e);
+    }
     render() {
         const {title, text, date, onDelete} = this.props;
 
@@ -79,8 +82,16 @@ class NoteItem extends Component {
         return (
             <Wrap className="note-item">
                 <div className="note-item-body">
-                    <Title contentEditable={false} onInput={console.log}>{title}</Title>
-                    <Text contentEditable={false} onInput={console.log}>{text}</Text>
+                    <Title 
+                        contentEditable={true} 
+                        onInput={this.onChange} 
+                        suppressContentEditableWarning={true}
+                        data-name="title">{title}</Title>
+                    <Text 
+                        contentEditable={true} 
+                        onInput={this.onChange} 
+                        suppressContentEditableWarning={true}
+                        data-name="text">{text}</Text>
                 </div>
                 <Footer>
                     <Date>
