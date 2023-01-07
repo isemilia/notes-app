@@ -26,14 +26,24 @@ const NotesWrap = styled.div`
   place-content: center;
   gap: 24px;
   margin-top: 30px;
-  max-height: 80vw;
+  /* max-height: 90vw; */
   overflow: auto;
   padding: 30px;
   max-width: 95.3rem;
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 519px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const AppWrap = styled.div`
   min-height: 100vh;
+  padding-bottom: 100px;
+  @media (max-width: 767px) {
+    padding-bottom: 130px;
+  }
 `;
 
 const saveInLocalSorage = (key, data) => {
@@ -48,7 +58,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: getFromLocalStorage('data'),
+      data: getFromLocalStorage('data') ? getFromLocalStorage('data') : [],
       popupIsClosed: true
     }
   }

@@ -17,6 +17,9 @@ const Footer = styled.footer`
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    @media (max-width: 1023px) {
+        border-radius: 30px 30px 0px 0px;
+    }   
 `;
 
 const NoteCount = styled.div`
@@ -29,17 +32,31 @@ const NoteCount = styled.div`
         line-height: 1.2em;
         color: var(--clr-accent-100);
     }
+    @media (max-width: 610px) {
+        img {
+            max-width: 18px;
+        }
+    }
 `;
 
 const LeftSide = styled.div`
     display: flex;
     column-gap: 56px;
+    @media (max-width: 767px) {
+        column-gap: 20px;
+        justify-content: center;
+    }
 `;
 
 const Socials = styled.div`
     display: flex;
     align-items: center;
     column-gap: 16px;
+    @media (max-width: 610px) {
+        width: 100%;
+        column-gap: 35px;
+        justify-content: center;
+    }
 `;
 
 const SocialIconLink = styled.a`
@@ -54,6 +71,20 @@ const FooterText = styled.div`
     line-height: 1.2em;
     color: var(--clr-primary-200);
     max-width: 384px;
+    @media (max-width: 767px) {
+        font-size: 1.2rem;
+    }
+`;
+
+const FooterContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 610px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 20px;
+    }
 `;
 
 class PrimaryFooter extends Component {
@@ -64,7 +95,7 @@ class PrimaryFooter extends Component {
         const {noteCount} = this.props;
         return (
             <Footer>
-                <div className="container d-flex jc-space-between ai-center">
+                <FooterContainer className="container">
                     <LeftSide>
                         <NoteCount>
                             <img src={NoteIcon} alt="note" />
@@ -83,7 +114,7 @@ class PrimaryFooter extends Component {
                             <img src={WaIcon} alt="Whatsapp" />
                         </SocialIconLink>
                     </Socials>
-                </div>
+                </FooterContainer>
             </Footer>
         )
     }

@@ -27,8 +27,10 @@ const Text = styled.div`
     color: var(--clr-primary-200);
     margin-top: 10px;
     min-height: 100px;
-    max-height: 102px;
+    /* max-height: 102px; */
+    max-width: 240px;
     border-radius: 2px;
+    word-break: break-all;
     &:focus {
         outline: 1px solid var(--clr-accent-100); 
     }
