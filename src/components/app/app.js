@@ -6,6 +6,7 @@ import PrimaryHeader from '../primary-header/primary-header';
 import NoteItem from '../note-item/note-item';
 import PrimaryFooter from '../primary-footer/primary-footer';
 import Popup from '../popup/popup';
+import Empty from '../empty/empty';
 
 import './app.scss';
 
@@ -124,6 +125,7 @@ class App extends Component {
           <NotesWrap className='container'>
             {elements}
           </NotesWrap>
+          {noteCount === 0 ? <Empty/> : ''}
         </main>
         {this.state.popupIsClosed ? '' : <Popup onTogglePopup={this.onTogglePopup} onCreateNote={this.onCreateNote} />}
         <PrimaryFooter 
