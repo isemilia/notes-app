@@ -36,16 +36,19 @@ const AppWrap = styled.div`
   min-height: 100vh;
 `;
 
+const saveInLocalSorage = (key, data) => {
+  localStorage.setItem(key, JSON.stringify(data));
+} 
+
+const getFromLocalStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key));
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date('Jan 02 2023 15:13:29 GMT+0600 (East Kazakhstan Time)'), id: 1},
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date('Apr 15 2023 10:53:29 GMT+0600 (East Kazakhstan Time)'), id: 2},
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date('Sep 23 2023 19:10:29 GMT+0600 (East Kazakhstan Time)'), id: 3},
-        {title: 'Note title', text: 'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent sociosqu ad litora torquent per conubia nostra, per inceptos himena.', date: new Date(), id: 4}
-      ],
+      data: getFromLocalStorage('data'),
       popupIsClosed: true
     }
   }
@@ -59,7 +62,7 @@ class App extends Component {
     
     const newData = [...this.state.data, data];
     this.setState(() => ({
-      data: [...newData]
+      data: newData
     }));
   }
   onDelete = (id) => {
@@ -100,6 +103,8 @@ class App extends Component {
           onContentChange={(e) => {this.onContentChange(id, e.target)}} />
       );
     });
+    saveInLocalSorage('data', data);
+    // console.log(getFromLocalStorage('data'));
     const noteCount = data.length;
     return (
       <AppWrap>

@@ -41,7 +41,7 @@ const Footer = styled.div`
     align-items: center;
 `;
 
-const Date = styled.div`
+const DateOutput = styled.div`
     font-weight: 300;
     font-size: 1.4rem;
     line-height: 1.2em;
@@ -79,12 +79,14 @@ class NoteItem extends Component {
     render() {
         const {title, text, date, onDelete} = this.props;
 
+        let parsedDate = new Date(date);
+
         const noteDate = {
-            hour: date.getHours(),
-            minutes: date.getMinutes(),
-            day: date.getDate(),
-            year: date.getFullYear(),
-            month: new Intl.DateTimeFormat("en-US", { month: "short" }).format(date),
+            hour: parsedDate.getHours(),
+            minutes: parsedDate.getMinutes(),
+            day: parsedDate.getDate(),
+            year: parsedDate.getFullYear(),
+            month: new Intl.DateTimeFormat("en-US", { month: "short" }).format(parsedDate),
         }
 
         return (
@@ -104,10 +106,10 @@ class NoteItem extends Component {
                         data-name="text">{text}</Text>
                 </div>
                 <Footer>
-                    <Date>
+                    <DateOutput>
                         <span className="time" style={{marginRight: '10px'}}>{this.prependZero(noteDate.hour)}:{this.prependZero(noteDate.minutes)}</span>
                         <span className="day">{noteDate.month} {noteDate.day}, {noteDate.year}</span>
-                    </Date>
+                    </DateOutput>
                     <Delete onClick={onDelete}>
                         {deleteIcon}
                     </Delete>
