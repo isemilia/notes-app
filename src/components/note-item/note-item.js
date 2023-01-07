@@ -14,6 +14,10 @@ const Title = styled.h2`
     font-size: 1.6rem;
     line-height: 1.2em;
     color: var(--clr-primary-100);
+    border-radius: 2px;
+    &:focus {
+        outline: 1px solid var(--clr-accent-100);
+    }
 `;
 
 const Text = styled.div`
@@ -24,6 +28,10 @@ const Text = styled.div`
     margin-top: 10px;
     min-height: 100px;
     max-height: 102px;
+    border-radius: 2px;
+    &:focus {
+        outline: 1px solid var(--clr-accent-100); 
+    }
 `;
 
 const Footer = styled.div`
@@ -85,11 +93,13 @@ class NoteItem extends Component {
                     <Title 
                         contentEditable={true} 
                         onInput={this.onChange} 
+                        tabIndex="0"
                         suppressContentEditableWarning={true}
                         data-name="title">{title}</Title>
                     <Text 
                         contentEditable={true} 
                         onInput={this.onChange} 
+                        tabIndex="0"
                         suppressContentEditableWarning={true}
                         data-name="text">{text}</Text>
                 </div>

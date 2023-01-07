@@ -13,6 +13,12 @@ function generateID() {
   return Math.random().toString(16).slice(2);
 }
 
+function moveCaretToEnd(editableElement) {
+  const selection = window.getSelection();
+  selection.selectAllChildren(editableElement);
+  selection.collapseToEnd();
+}
+
 const NotesWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -75,6 +81,7 @@ class App extends Component {
       }
       return item;
     });
+    moveCaretToEnd(target); // keep cursor at the end. prevents it from jumping to the beginning
     this.setState(() => ({
       data: newData
     }));
