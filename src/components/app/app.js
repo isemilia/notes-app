@@ -20,6 +20,15 @@ function moveCaretToEnd(editableElement) {
   selection.collapseToEnd();
 }
 
+function cursorPosition() {
+  let sel = document.getSelection();
+  sel.modify("extend", "backward", "paragraphboundary");
+  let pos = sel.toString().length;
+  if(sel.anchorNode != undefined) sel.collapseToEnd();
+
+  return pos;
+}
+
 const NotesWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -86,16 +95,17 @@ class App extends Component {
     });
   }
   onContentChange = (id, target) => {
-    console.log(id, target.getAttribute('data-name'), 'changed');
+    // console.log(id, target.getAttribute('data-name'), 'changed');
     
     const attr = target.getAttribute('data-name');
+    // keep cursor at the end. prevents it from jumping to the beginning. buggy in firefox
+    moveCaretToEnd(target); 
     const newData = this.state.data.map(item => {
       if (item.id === id) {
         return {...item, [attr]: target.textContent}
       }
       return item;
     });
-    moveCaretToEnd(target); // keep cursor at the end. prevents it from jumping to the beginning
     this.setState(() => ({
       data: newData
     }));
