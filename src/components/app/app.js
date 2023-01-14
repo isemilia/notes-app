@@ -117,15 +117,16 @@ class App extends Component {
     saveInLocalSorage('data', data);
     // console.log(getFromLocalStorage('data'));
     const noteCount = data.length;
+    const mainStyle = noteCount === 0 ? {display: 'grid', placeContent: 'center', minHeight: '72vh', paddingTop: '30px'} : null
     return (
       <AppWrap>
         <PrimaryHeader 
           onTogglePopup={this.onTogglePopup} />
-        <main>
-          <NotesWrap className='container'>
+        <main style={mainStyle}>
+          {noteCount === 0 ? <Empty/> : null}
+          <NotesWrap className='container' style={noteCount === 0 ? {display: 'none'} : null}>
             {elements}
           </NotesWrap>
-          {noteCount === 0 ? <Empty/> : ''}
         </main>
         {this.state.popupIsClosed ? '' : <Popup onTogglePopup={this.onTogglePopup} onCreateNote={this.onCreateNote} />}
         <PrimaryFooter 
