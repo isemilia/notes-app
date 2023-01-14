@@ -18,6 +18,9 @@ const Card = styled.div`
     text-align: center;
     color: var(--clr-primary-200);
     row-gap: 25px;
+    @media (min-width: 500px) {
+        min-width: 486px;
+    }
 `;
 
 class Empty extends Component {
