@@ -7,6 +7,8 @@ import GhIcon from '../../img/github.svg';
 import WaIcon from '../../img/wa.svg';
 import InstaIcon from '../../img/insta.svg';
 
+import Data from '../../services/data'
+
 const Footer = styled.footer`
     background-color: var(--clr-neutral-100);
     border-radius: 60px 60px 0px 0px;
@@ -20,6 +22,10 @@ const Footer = styled.footer`
     @media (max-width: 1023px) {
         border-radius: 30px 30px 0px 0px;
     }   
+    a {
+        text-decoration: underline;
+        color: var(--clr-accent-100);
+    }
 `;
 
 const NoteCount = styled.div`
@@ -93,6 +99,7 @@ class PrimaryFooter extends Component {
     }
     render() {
         const {noteCount} = this.props;
+        const currentYear = new Date().getFullYear();
         return (
             <Footer>
                 <FooterContainer className="container">
@@ -101,16 +108,19 @@ class PrimaryFooter extends Component {
                             <img src={NoteIcon} alt="note" />
                             <span>{noteCount}</span>
                         </NoteCount>
-                        <FooterText>Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio.</FooterText>
+                        <FooterText>
+                            This app was designed and developed by <a href={Data.github}>Emilia</a>
+                            <br /> © 2022-{currentYear} Emilia Web
+                            </FooterText>
                     </LeftSide>
                     <Socials>
-                        <SocialIconLink href="#">
+                        <SocialIconLink href={Data.github}>
                             <img src={GhIcon} alt="Github" />
                         </SocialIconLink>
-                        <SocialIconLink href="#">
+                        <SocialIconLink href={Data.instagram}>
                             <img src={InstaIcon} alt="Instagram" />
                         </SocialIconLink>
-                        <SocialIconLink href="#">
+                        <SocialIconLink href={Data.whatsapp}>
                             <img src={WaIcon} alt="Whatsapp" />
                         </SocialIconLink>
                     </Socials>
