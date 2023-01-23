@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/notes-app/static/css/main.9f816c23.css",
-    "main.js": "/notes-app/static/js/main.34488492.js",
+    "main.css": "/notes-app/static/css/main.98e1ff53.css",
+    "main.js": "/notes-app/static/js/main.521f8dfa.js",
     "static/media/MuseoSansCyrl-300Italic.eot": "/notes-app/static/media/MuseoSansCyrl-300Italic.23a3785062c85097cdd3.eot",
     "static/media/MuseoSansCyrl-700Italic.eot": "/notes-app/static/media/MuseoSansCyrl-700Italic.89cfbac4e41f512c9c2e.eot",
     "static/media/MuseoSansCyrl-300Italic.ttf": "/notes-app/static/media/MuseoSansCyrl-300Italic.84a9474782a9c8a49bfc.ttf",
@@ -37,11 +37,11 @@
     "static/media/github.svg": "/notes-app/static/media/github.bf3cfb0d0924d91f0c61368fccb58fe3.svg",
     "static/media/wa.svg": "/notes-app/static/media/wa.61c8407a8e90f54115c51f4031f73298.svg",
     "index.html": "/notes-app/index.html",
-    "main.9f816c23.css.map": "/notes-app/static/css/main.9f816c23.css.map",
-    "main.34488492.js.map": "/notes-app/static/js/main.34488492.js.map"
+    "main.98e1ff53.css.map": "/notes-app/static/css/main.98e1ff53.css.map",
+    "main.521f8dfa.js.map": "/notes-app/static/js/main.521f8dfa.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f816c23.css",
-    "static/js/main.34488492.js"
+    "static/css/main.98e1ff53.css",
+    "static/js/main.521f8dfa.js"
   ]
 }
