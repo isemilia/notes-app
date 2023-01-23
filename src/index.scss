@@ -52,3 +52,30 @@ code {
 #root {
   position: relative;
 }
+
+// .flipmove-wrapper {
+//   // position: static !important;
+//   display: flex;
+//   max-width: 100%;
+//   & > .note-item {
+//     // position: static !important;
+//     min-width: 220px;
+//   } 
+// }
+
+.flipmove-notes-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  place-content: center;
+  gap: 24px;
+  margin-top: 30px;
+  overflow: auto;
+  padding: 30px;
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 519px) {
+    grid-template-columns: 1fr;
+  }
+}

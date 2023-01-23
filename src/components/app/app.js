@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
+import FlipMove from 'react-flip-move';
 
 import PrimaryHeader from '../primary-header/primary-header';
 import NoteItem from '../note-item/note-item';
@@ -95,8 +96,6 @@ class App extends Component {
     });
   }
   onContentChange = (id, target) => {
-    // console.log(id, target.getAttribute('data-name'), 'changed');
-    
     const attr = target.getAttribute('data-name');
     // keep cursor at the end. prevents it from jumping to the beginning. buggy in firefox
     moveCaretToEnd(target); 
@@ -125,18 +124,21 @@ class App extends Component {
       );
     });
     saveInLocalSorage('data', data);
-    // console.log(getFromLocalStorage('data'));
     const noteCount = data.length;
-    const mainStyle = noteCount === 0 ? {display: 'grid', placeContent: 'center', minHeight: '72vh', paddingTop: '30px'} : null
+    const mainStyle = noteCount === 0 ? {display: 'grid', placeContent: 'center', minHeight: '72vh', paddingTop: '30px'} : null;
     return (
       <AppWrap>
         <PrimaryHeader 
           onTogglePopup={this.onTogglePopup} />
         <main style={mainStyle}>
-          {noteCount === 0 ? <Empty/> : null}
-          <NotesWrap className='container' style={noteCount === 0 ? {display: 'none'} : null}>
-            {elements}
-          </NotesWrap>
+          <FlipMove leaveAnimation={null}>
+            {noteCount === 0 ? <Empty/> : null}
+          </FlipMove>
+          <div className='container' style={noteCount === 0 ? {display: 'none'} : null}>
+            <FlipMove className='flipmove-notes-wrapper'>
+              {elements}
+            </FlipMove>
+          </div>
         </main>
         {this.state.popupIsClosed ? '' : <Popup onTogglePopup={this.onTogglePopup} onCreateNote={this.onCreateNote} />}
         <PrimaryFooter 
