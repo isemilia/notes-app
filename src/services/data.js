@@ -1,6 +1,6 @@
 class Data {
-    static github = 'https://github.com/emiliaweb';
-    static instagram = 'https://www.instagram.com/emilia.webdeveloper';
+    static github = 'https://github.com/isemilia';
+    static instagram = 'https://www.instagram.com/emiliawebdeveloper';
     static whatsapp = null;
 }
 
